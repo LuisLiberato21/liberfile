@@ -159,3 +159,4 @@ async def modificar_usuario(usuario_id: str, usuario: UsuarioUpdate):
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
     
     return {"mensaje": "Usuario actualizado correctamente"}
+
