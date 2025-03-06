@@ -7,6 +7,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from routes.auth import router as auth_router
 from pymongo import MongoClient
 from pydantic import BaseModel
+from starlette.requests import Request
 from typing import List
 from bson import ObjectId
 from core.config import MONGO_DETAILS
@@ -23,9 +24,10 @@ templates = Jinja2Templates(directory="templates")
 
 app.include_router(auth_router)
 
+# Ruta para servir HTML
 @app.get("/")
-async def read_root():
-    return {"message": "¡Hola, FastAPI en Render!"}
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 # Configuración de MongoDB
 MONGO_DETAILS = "mongodb+srv://admin:foralltid54237286@liberfile.fhwy6.mongodb.net/liberfile_db"
@@ -159,4 +161,3 @@ async def modificar_usuario(usuario_id: str, usuario: UsuarioUpdate):
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
     
     return {"mensaje": "Usuario actualizado correctamente"}
-
