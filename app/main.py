@@ -61,7 +61,7 @@ class UsuarioUpdate(BaseModel):
     rol: str
 
 # Ruta para mostrar el formulario de login
-@app.get("/", response_class=HTMLResponse)
+@app.get("/login", response_class=HTMLResponse)
 async def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
