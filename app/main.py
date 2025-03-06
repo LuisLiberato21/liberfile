@@ -23,6 +23,9 @@ templates = Jinja2Templates(directory="templates")
 
 app.include_router(auth_router)
 
+@app.get("/")
+async def read_root():
+    return {"message": "¡Hola, FastAPI en Render!"}
 
 # Configuración de MongoDB
 MONGO_DETAILS = "mongodb+srv://admin:foralltid54237286@liberfile.fhwy6.mongodb.net/liberfile_db"
